@@ -90,6 +90,109 @@ document.querySelectorAll('.photo-slot img').forEach(img => {
 });
 
 // ================================================================
+// CONFETTI — pops on the "2nd place overall" result
+// Fires once when it scrolls into view, then again on hover/focus.
+// EDIT: tweak COUNT / COLORS / GRAVITY below to taste.
+// ================================================================
+const CONFETTI = {
+    COUNT:    46,
+    COLORS:   ['#e55300', '#ff8c42', '#ffb27a', '#c9c9c9', '#ffffff'],
+    GRAVITY:  0.30,
+    DRAG:     0.985,
+    FADE:     0.011,   // higher = shorter lifespan
+    COOLDOWN: 600      // ms between bursts, stops hover spam
+};
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lastBurst = 0;
+
+function fireConfetti(originEl) {
+    if (reduceMotion) return;
+
+    const now = Date.now();
+    if (now - lastBurst < CONFETTI.COOLDOWN) return;
+    lastBurst = now;
+
+    const rect = originEl.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
+
+    // Single throwaway layer per burst, removed when the last piece dies
+    const layer = document.createElement('div');
+    layer.style.cssText =
+        'position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden;';
+    document.body.appendChild(layer);
+
+    const pieces = [];
+    for (let i = 0; i < CONFETTI.COUNT; i++) {
+        const el = document.createElement('div');
+        const w = 5 + Math.random() * 5;
+        el.style.cssText =
+            `position:absolute;top:0;left:0;width:${w}px;height:${w * 0.55}px;` +
+            `background:${CONFETTI.COLORS[i % CONFETTI.COLORS.length]};` +
+            `will-change:transform,opacity;`;
+        layer.appendChild(el);
+
+        // Fan upward and out from the word
+        const angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 0.95;
+        const speed = 5 + Math.random() * 7;
+
+        pieces.push({
+            el,
+            x:  originX,
+            y:  originY,
+            vx: Math.cos(angle) * speed + (Math.random() - 0.5) * 2,
+            vy: Math.sin(angle) * speed,
+            rot: Math.random() * 360,
+            vr:  (Math.random() - 0.5) * 22,
+            life: 1
+        });
+    }
+
+    (function tick() {
+        let alive = false;
+
+        for (const p of pieces) {
+            if (p.life <= 0) continue;
+
+            p.vy  += CONFETTI.GRAVITY;
+            p.vx  *= CONFETTI.DRAG;
+            p.x   += p.vx;
+            p.y   += p.vy;
+            p.rot += p.vr;
+            p.life -= CONFETTI.FADE;
+
+            p.el.style.transform =
+                `translate3d(${p.x}px, ${p.y}px, 0) rotate(${p.rot}deg)`;
+            p.el.style.opacity = Math.max(0, p.life);
+            alive = true;
+        }
+
+        alive ? requestAnimationFrame(tick) : layer.remove();
+    })();
+}
+
+const podium = document.querySelector('.podium');
+if (podium) {
+    // Pop once the result scrolls into view
+    const podiumObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            // let the section's reveal animation land first
+            setTimeout(() => fireConfetti(podium), 450);
+            obs.unobserve(entry.target);
+        });
+    }, { threshold: 1.0 });
+
+    podiumObserver.observe(podium);
+
+    // ...and again on demand
+    podium.addEventListener('mouseenter', () => fireConfetti(podium));
+    podium.addEventListener('focus',      () => fireConfetti(podium));
+    podium.addEventListener('click',      () => fireConfetti(podium));
+}
+
+// ================================================================
 // GALLERY MODAL
 // ================================================================
 const modal        = document.getElementById('gallery-modal');

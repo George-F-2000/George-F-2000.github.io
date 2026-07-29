@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>George Fares — Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --accent:   #e55300;
+            --text:     #0a0a0a;
+            --muted:    #5a5a5a;
+            --rule:     #d8d8d8;
+            --mono:     'IBM Plex Mono', monospace;
+            --sans:     'Inter', sans-serif;
+            --page-w:   780px;
+        }
+
+        html { font-size: 10.5pt; }
+
+        body {
+            font-family: var(--sans);
+            color: var(--text);
+            background: #ffffff;
+            line-height: 1.5;
+            padding: 32px 24px;
+        }
+
+        .page {
+            max-width: var(--page-w);
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           PRINT BUTTON (screen only)
+           ============================================================ */
+        .print-bar {
+            max-width: var(--page-w);
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: #fff8f5;
+            border: 1px solid #ffd0be;
+            border-radius: 6px;
+            font-size: 9pt;
+            color: var(--muted);
+        }
+        .print-bar button {
+            margin-left: auto;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-family: var(--mono);
+            font-size: 9pt;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+        }
+        .print-bar button:hover { background: #c44a00; }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .resume-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            align-items: end;
+            padding-bottom: 14px;
+            border-bottom: 2.5px solid var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .resume-name {
+            font-family: var(--mono);
+            font-size: 22pt;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .resume-title {
+            font-size: 9.5pt;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .resume-contact {
+            text-align: right;
+            font-size: 8.5pt;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .resume-contact a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .resume-contact a:hover { color: var(--accent); }
+
+        /* ============================================================
+           SECTION
+           ============================================================ */
+        section + section { margin-top: 16px; }
+
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 7.5pt;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* ============================================================
+           SUMMARY
+           ============================================================ */
+        .summary p {
+            font-size: 9.5pt;
+            color: #2a2a2a;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           EDUCATION
+           ============================================================ */
+        .edu-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .edu-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: start;
+        }
+
+        .edu-degree {
+            font-size: 9.5pt;
+            font-weight: 600;
+        }
+
+        .edu-field {
+            font-size: 9pt;
+            color: var(--muted);
+        }
+
+        .edu-school {
+            font-size: 8.5pt;
+            color: var(--muted);
+        }
+
+        .edu-right {
+            text-align: right;
+            font-family: var(--mono);
+            font-size: 8pt;
+            color: var(--muted);
+            white-space: nowrap;
+            line-height: 1.7;
+        }
+
+        .edu-badge {
+            display: inline-block;
+            font-size: 7.5pt;
+            font-family: var(--mono);
+            color: var(--accent);
+            background: #fff2ec;
+            padding: 1px 6px;
+            border-radius: 2px;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           EXPERIENCE
+           ============================================================ */
+        .exp-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .exp-item {}
+
+        .exp-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .exp-role {
+            font-size: 9.5pt;
+            font-weight: 600;
+        }
+
+        .exp-dates {
+            font-family: var(--mono);
+            font-size: 8pt;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .exp-subrole {
+            font-size: 9pt;
+            font-weight: 500;
+            color: #3a3a3a;
+            margin-bottom: 1px;
+        }
+
+        .exp-org {
+            font-size: 8.5pt;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .exp-org .loc { color: #999; }
+
+        ul.exp-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.exp-bullets li {
+            font-size: 9pt;
+            padding-left: 12px;
+            position: relative;
+            line-height: 1.55;
+            margin-bottom: 2px;
+        }
+
+        ul.exp-bullets li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 8pt;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 5px;
+        }
+
+        .tag {
+            font-family: var(--mono);
+            font-size: 7.5pt;
+            color: var(--muted);
+            background: #f4f4f4;
+            padding: 1px 6px;
+            border-radius: 2px;
+        }
+
+        /* ============================================================
+           PUBLICATIONS
+           ============================================================ */
+        .pub-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .pub-item {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            gap: 10px;
+            align-items: start;
+        }
+
+        .pub-meta {
+            font-family: var(--mono);
+            font-size: 7.5pt;
+            color: var(--muted);
+            line-height: 1.6;
+            text-align: right;
+            padding-top: 1px;
+        }
+
+        .pub-venue {
+            color: var(--accent);
+            font-weight: 500;
+            display: block;
+        }
+
+        .pub-title {
+            font-size: 9pt;
+            font-weight: 500;
+            line-height: 1.45;
+        }
+
+        .pub-primary {
+            font-family: var(--mono);
+            font-size: 7pt;
+            color: #4caf50;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        .pub-contribution {
+            font-size: 8.5pt;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-top: 3px;
+        }
+
+        /* ============================================================
+           AWARDS
+           ============================================================ */
+        .award-list { display: flex; flex-direction: column; gap: 5px; }
+
+        .award-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: baseline;
+            font-size: 9pt;
+        }
+
+        .award-name { font-weight: 500; }
+
+        .award-detail { color: var(--muted); font-weight: 400; }
+
+        .award-year {
+            font-family: var(--mono);
+            font-size: 8pt;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+           PROJECTS
+           ============================================================ */
+        .proj-list { display: flex; flex-direction: column; gap: 9px; }
+
+        .proj-item {}
+
+        .proj-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: baseline;
+        }
+
+        .proj-title {
+            font-size: 9.5pt;
+            font-weight: 600;
+        }
+
+        .proj-outcome {
+            font-family: var(--mono);
+            font-size: 8pt;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .proj-desc {
+            font-size: 9pt;
+            color: #2a2a2a;
+            margin: 2px 0 4px;
+            line-height: 1.5;
+        }
+
+        .proj-tools {
+            font-family: var(--mono);
+            font-size: 8pt;
+            color: var(--muted);
+        }
+
+        /* ============================================================
+           SKILLS
+           ============================================================ */
+        .skills-table { display: flex; flex-direction: column; gap: 5px; }
+
+        .skill-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 10px;
+            align-items: start;
+            font-size: 9pt;
+        }
+
+        .skill-cat {
+            font-family: var(--mono);
+            font-size: 8pt;
+            color: var(--muted);
+            padding-top: 1px;
+        }
+
+        .skill-items {
+            color: #2a2a2a;
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+           PRINT
+           ============================================================ */
+        @media print {
+            /* Deliberately paced to fill two full pages — adjust font-size
+               and the gaps below together if content is ever added/removed. */
+            html { font-size: 10.5pt; }
+            body { padding: 14mm 16mm; background: #fff; }
+            .print-bar { display: none !important; }
+            .page { max-width: 100%; }
+
+            a { color: inherit !important; text-decoration: none !important; }
+
+            section + section { margin-top: 14px; }
+            .sec-label      { margin-bottom: 10px; }
+            .exp-list       { gap: 14px; }
+            .exp-bullets li { line-height: 1.58; margin-bottom: 2px; }
+            .pub-list       { gap: 10px; }
+            .proj-list      { gap: 10px; }
+            .edu-list       { gap: 9px; }
+            .award-list     { gap: 6px; }
+            .skills-table   { gap: 6px; }
+
+            /* avoid breaking inside an item */
+            .exp-item, .pub-item, .proj-item, .edu-item, .award-item {
+                break-inside: avoid;
+            }
+
+            /* never strand a section heading at the foot of a page */
+            .sec-label  { break-after: avoid; }
+            .award-list { break-inside: avoid; }
+
+            /* Content is paced to ~18.8in against 19.8in of usable space
+               across two pages. That ~1in of slack lets the browser pick
+               its own break points without ever spilling to a third page. */
+
+            @page {
+                size: letter;
+                margin: 14mm 16mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Print helper (hidden when printing) -->
+<div class="print-bar">
+    <span>To save as PDF: File → Print → Save as PDF (set margins to None or Minimum for best results)</span>
+    <button onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<div class="page">
+
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+    <header class="resume-header">
+        <div>
+            <div class="resume-name">George Fares</div>
+            <div class="resume-title">Vehicle Dynamics &amp; Calibration · EV Powertrain Integration · PhD Candidate</div>
+        </div>
+        <div class="resume-contact">
+            <a href="mailto:faresg2@mcmaster.ca">faresg2@mcmaster.ca</a><br>
+            <a href="https://linkedin.com/in/george-fares" target="_blank">linkedin.com/in/george-fares</a><br>
+            <a href="https://george-f-2000.github.io" target="_blank">george-f-2000.github.io</a><br>
+            Hamilton, ON
+        </div>
+    </header>
+
+    <!-- ============================================================
+         SUMMARY
+         ============================================================ -->
+    <section class="summary">
+        <div class="sec-label">Profile</div>
+        <p>
+            Vehicle dynamics and calibration engineer with production-vehicle experience. Took a Cadillac LYRIQ from
+            <strong>6.4 to 7.8 AVL DRIVE</strong>, cut <strong>41 kg</strong> via a lightweight wheel package, and led the
+            8-month system design effort that put the car on a rare-earth-metal-free EV drivetrain. 3rd-year PhD candidate
+            at McMaster with three peer-reviewed publications. Targeting vehicle dynamics, calibration, and NVH roles.
+        </p>
+    </section>
+
+    <!-- ============================================================
+         EXPERIENCE
+         ============================================================ -->
+    <section>
+        <div class="sec-label">Experience</div>
+        <div class="exp-list">
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Vehicle Dynamics &amp; Calibration Lead</div>
+                    <div class="exp-dates">Jan. 2024 — Present</div>
+                </div>
+                <div class="exp-subrole">System Design &amp; Integration Technical Specialist</div>
+                <div class="exp-org">McMaster EcoCAR &mdash; <span class="loc">Hamilton, ON</span></div>
+                <ul class="exp-bullets">
+                    <li>Raised drivability from <strong>6.4 (poor) to 7.8 (saleable)</strong> on AVL DRIVE — a <strong>22% gain</strong> — tuning tip-in/tip-out, torque management, and response timing</li>
+                    <li>Cut <strong>41 kg</strong> of unsprung and rotating mass via a lightweight wheel package, improving ride and steering response</li>
+                    <li>Validated the rear subframe against <strong>GM's internal structural documentation</strong> by FEA (Altair HyperWorks, Simcenter) — met <strong>100%</strong> of required criteria</li>
+                    <li>Led <strong>8 engineers</strong> integrating a 150-kW switched-reluctance powertrain into the rear of a Cadillac LYRIQ in <strong>8 months</strong></li>
+                    <li>Built the calibration and data workflow: AVL DRIVE, Simulink Real-Time Explorer, Vector CANalyzer/GSuite, GL2400 and VN1630 loggers; validated on-road and on closed course</li>
+                    <li><strong>2nd place overall</strong>, Year 4 DOE EcoCAR EV Challenge — 1 of only <strong>5 of 13</strong> teams to finish the over-the-road event with full points</li>
+                </ul>
+                <div class="tag-row">
+                    <span class="tag">AVL DRIVE</span>
+                    <span class="tag">CANalyzer</span>
+                    <span class="tag">Vector GSuite</span>
+                    <span class="tag">Simulink RT</span>
+                    <span class="tag">Siemens NX</span>
+                    <span class="tag">Altair HyperWorks</span>
+                    <span class="tag">FEA</span>
+                    <span class="tag">Vehicle Testing</span>
+                    <span class="tag">Lightweighting</span>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div class="exp-role">Production Engineering Intern</div>
+                    <div class="exp-dates">Mar. 2022 — Aug. 2022</div>
+                </div>
+                <div class="exp-org">Promach Inc. (Edson Division) &mdash; <span class="loc">Hamilton, ON</span></div>
+                <ul class="exp-bullets">
+                    <li>Redesigned part nesting layouts, cutting material usage <strong>15%</strong> and reducing production cycle times</li>
+                    <li>Strengthened QC practices and tightened the feedback loop between shop floor and engineering</li>
+                </ul>
+                <div class="tag-row">
+                    <span class="tag">SolidWorks</span>
+                    <span class="tag">Design for Manufacture</span>
+                    <span class="tag">QC</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         EDUCATION
+         ============================================================ -->
+    <section>
+        <div class="sec-label">Education</div>
+        <div class="edu-list">
+
+            <div class="edu-item">
+                <div>
+                    <div class="edu-degree">Doctor of Philosophy — Mechanical Engineering</div>
+                    <div class="edu-school">McMaster University &mdash; Hamilton, ON</div>
+                </div>
+                <div class="edu-right">
+                    Expected Aug. 2027<br>
+                    GPA 3.9 / 4.0<br>
+                    <span class="edu-badge">In Progress</span>
+                </div>
+            </div>
+
+            <div class="edu-item">
+                <div>
+                    <div class="edu-degree">Bachelor of Technology — Automotive &amp; Vehicle Engineering Technology</div>
+                    <div class="edu-school">McMaster University &mdash; Hamilton, ON</div>
+                </div>
+                <div class="edu-right">
+                    Graduated Dec. 2022<br>
+                    <span class="edu-badge">Valedictorian 2023</span>
+                </div>
+            </div>
+
+            <div class="edu-item">
+                <div>
+                    <div class="edu-degree">Advanced Diploma — Mechanical Engineering Technology</div>
+                    <div class="edu-school">Mohawk College &mdash; Hamilton, ON</div>
+                </div>
+                <div class="edu-right">Graduated Dec. 2022</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PUBLICATIONS
+         ============================================================ -->
+    <section>
+        <div class="sec-label">Publications</div>
+        <div class="pub-list">
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    <span class="pub-venue">SAE WCX</span>
+                    2024
+                </div>
+                <div>
+                    <div class="pub-title">Automotive Intermediate Shaft Design &amp; Bearing Selection for a Propulsion Switched Reluctance Motor in a Battery Electric Vehicle</div>
+                    <div class="pub-primary">&#9679; PRIMARY AUTHOR</div>
+                    <div class="pub-contribution">Designed and optimized an intermediate shaft to split SRM torque equally across both rear CV axles, eliminating torque steer under hard acceleration. Optimized material, wall section, and torsional stiffness for maximum rigidity at minimum mass.</div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    <span class="pub-venue">ITEC</span>
+                    2025
+                </div>
+                <div>
+                    <div class="pub-title">Evaluation of Powertrain Architectures for McMaster EcoCAR EV Considering Traditional Electric Machines and Switched Reluctance Machines</div>
+                    <div class="pub-contribution">Assessed trade-offs between the dual-motor architecture (AAM induction front, SRM rear) and dual permanent-magnet alternatives. Contributed the mechanical packaging analysis and its impact on performance-target feasibility.</div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    <span class="pub-venue">IEEE TTE</span>
+                    2026
+                </div>
+                <div>
+                    <div class="pub-title">Design and Integration of a Traction Inverter for a 150-kW Switched Reluctance Motor (SRM) Drive Unit in a Cadillac LYRIQ</div>
+                    <div class="pub-contribution">Ran thermal validation in ANSYS Fluent to verify the Foster network model for the inverter's power switches, comparing simulated thermal impedance against experimental results under real drive conditions.</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS
+         ============================================================ -->
+    <section>
+        <div class="sec-label">Selected Projects</div>
+        <div class="proj-list">
+
+            <div class="proj-item">
+                <div class="proj-header">
+                    <div class="proj-title">SRM Powertrain Integration — Cadillac LYRIQ</div>
+                    <div class="proj-outcome">2nd place · EcoCAR Year 4</div>
+                </div>
+                <div class="proj-desc">First-of-its-kind switched-reluctance EV powertrain packaged into the rear of a production LYRIQ (AAM induction front, Enedym SRM rear) for the DOE EcoCAR EV Challenge.</div>
+                <div class="proj-tools">Siemens NX · Altair HyperWorks · FEA</div>
+            </div>
+
+            <div class="proj-item">
+                <div class="proj-header">
+                    <div class="proj-title">EcoCAR Powertrain Calibration</div>
+                    <div class="proj-outcome">AVL DRIVE 6.4 → 7.8</div>
+                </div>
+                <div class="proj-desc">Logged, analyzed, and iterated powertrain response over two competition years, on-road and on a chassis dyno, to lift objective drivability from a poor baseline to saleable.</div>
+                <div class="proj-tools">AVL DRIVE · Simulink RT Explorer · CANalyzer · Vector GSuite · GL2400 · VN1630</div>
+            </div>
+
+            <div class="proj-item">
+                <div class="proj-header">
+                    <div class="proj-title">Series Hybrid Engine Sizing Study</div>
+                    <div class="proj-outcome">Optimal engine sizing identified</div>
+                </div>
+                <div class="proj-desc">Converted a 2016 Chevy Spark EV model to a series REEV in Simulink and swept drive cycles to size the range extender against residual fuel consumption.</div>
+                <div class="proj-tools">MATLAB · Simulink · Standard Drive Cycles</div>
+            </div>
+
+            <div class="proj-item">
+                <div class="proj-header">
+                    <div class="proj-title">Autonomous Self-Parking Vehicle</div>
+                    <div class="proj-outcome">A · B.Tech Capstone</div>
+                </div>
+                <div class="proj-desc">Built and programmed a self-parking vehicle on Arduino and Lego Technic, with KPIs and test cases defined to prove repeatable parking performance.</div>
+                <div class="proj-tools">Arduino · Lego Technic · C++</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS
+         ============================================================ -->
+    <section>
+        <div class="sec-label">Skills</div>
+        <div class="skills-table">
+            <div class="skill-row">
+                <div class="skill-cat">CAD &amp; Design</div>
+                <div class="skill-items">Siemens NX, CATIA V5, SolidWorks, Fusion 360, AutoCAD, GD&amp;T, Technical Drawing</div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-cat">Analysis &amp; Simulation</div>
+                <div class="skill-items">Structural FEA, ANSYS Fluent (Thermal / CFD), Altair HyperWorks, MATLAB, Simulink, Multi-Body Dynamics, Drive Cycle Analysis</div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-cat">Powertrain &amp; Vehicle</div>
+                <div class="skill-items">EV Powertrain Integration, SRM Motors, Driveline Integration, Vehicle Calibration, CAN Bus, NVH, AVL DRIVE</div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-cat">Calibration &amp; Data</div>
+                <div class="skill-items">CANalyzer, Vector GSuite, Simulink RT Explorer, GL2400 Data Logger, VN1630</div>
+            </div>
+            <div class="skill-row">
+                <div class="skill-cat">Vehicle Testing</div>
+                <div class="skill-items">On-Road &amp; Closed-Course Testing, Chassis Dyno Testing, Test Planning &amp; KPI Definition, Data Acquisition</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         AWARDS
+         ============================================================ -->
+    <section>
+        <div class="sec-label">Awards &amp; Recognition</div>
+        <div class="award-list">
+            <div class="award-item">
+                <div><span class="award-name">Valedictorian</span> <span class="award-detail">— McMaster University, B.Tech Class of 2023</span></div>
+                <div class="award-year">2023</div>
+            </div>
+            <div class="award-item">
+                <div><span class="award-name">2nd Place Overall</span> <span class="award-detail">— DOE EcoCAR EV Challenge, Year 4</span></div>
+                <div class="award-year">2025</div>
+            </div>
+            <div class="award-item">
+                <div><span class="award-name">Primary Author</span> <span class="award-detail">— SAE World Congress Experience (WCX)</span></div>
+                <div class="award-year">2024</div>
+            </div>
+        </div>
+    </section>
+
+</div><!-- /page -->
+
+</body>
+</html>
