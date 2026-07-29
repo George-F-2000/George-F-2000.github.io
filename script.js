@@ -22,6 +22,17 @@ const galleries = {
             { src: 'images/cal-3.jpg', caption: 'Data collection at California Air Resources Board AVL Dyno' },
         ]
     },
+    'simbuilder': {
+        title: 'SimBuilder — Virtual Drivability Evaluation Pipeline',
+        images: [
+            // EDIT: drop screenshots into images/ and update these paths.
+            // Good candidates: the Vehicle Builder tab, the live run panel,
+            // the Results leaderboard, and a sim-vs-real overlay in the viewer.
+            { src: 'images/simbuilder-1.jpg', caption: 'Vehicle Builder — motor, gearing, mass and tire overrides' },
+            { src: 'images/simbuilder-2.jpg', caption: 'Live run panel with solver progress and log' },
+            { src: 'images/simbuilder-3.jpg', caption: 'Results leaderboard — Wh/km, jerk RMS, cycle tracking RMSE' },
+        ]
+    },
     'hybrid-study': {
         title: 'Series Hybrid Engine Sizing Study',
         images: [
