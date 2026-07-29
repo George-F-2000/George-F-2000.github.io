@@ -73,12 +73,46 @@
            ============================================================ */
         .resume-header {
             display: grid;
-            grid-template-columns: 1fr auto;
+            grid-template-columns: 1fr auto auto;
             gap: 16px;
             align-items: end;
             padding-bottom: 14px;
             border-bottom: 2.5px solid var(--accent);
             margin-bottom: 20px;
+        }
+
+        /* ============================================================
+           QR → portfolio. Inline SVG so the file stays self-contained
+           and it prints without "background graphics" enabled.
+           ============================================================ */
+        .qr-block {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* 29 modules at 80px ≈ 0.73 mm per module in print — comfortably
+           above the ~0.5 mm floor for phone cameras. Don't shrink this. */
+        .qr-code {
+            display: block;
+            width: 80px;
+            height: 80px;
+        }
+
+        .qr-code svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .qr-caption {
+            display: block;
+            font-family: var(--mono);
+            font-size: 6pt;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            margin-top: 4px;
         }
 
         .resume-name {
@@ -467,6 +501,13 @@
             <a href="https://george-f-2000.github.io" target="_blank">george-f-2000.github.io</a><br>
             Hamilton, ON
         </div>
+
+        <!-- QR → https://george-f-2000.github.io
+             Regenerate with:  py -3 -m segno "<url>" -o qr.svg --error q  -->
+        <a class="qr-block" href="https://george-f-2000.github.io" target="_blank" rel="noopener" aria-label="Scan for portfolio">
+            <span class="qr-code"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29"><path stroke="#0a0a0a" d="M0 0.5h7m3 0h1m2 0h2m2 0h4m1 0h7m-29 1h1m5 0h1m1 0h1m2 0h2m5 0h1m3 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h5m3 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m4 0h1m2 0h4m4 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h5m2 0h4m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h1m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-18 1h1m1 0h1m3 0h1m-17 1h3m1 0h2m2 0h3m3 0h3m1 0h2m5 0h2m-27 1h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m2 0h1m1 0h7m3 0h1m-25 1h3m1 0h2m1 0h1m3 0h1m4 0h1m1 0h3m2 0h1m-28 1h2m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m2 0h1m3 0h3m2 0h1m-26 1h1m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-29 1h1m1 0h4m2 0h1m4 0h1m1 0h2m2 0h1m2 0h2m1 0h4m-29 1h1m1 0h2m2 0h2m1 0h1m2 0h2m2 0h10m2 0h1m-27 1h3m4 0h6m3 0h3m1 0h1m1 0h2m-22 1h1m1 0h1m1 0h5m1 0h1m3 0h1m1 0h2m1 0h3m1 0h2m-27 1h3m4 0h1m2 0h3m1 0h1m3 0h1m4 0h1m-26 1h1m1 0h1m1 0h4m1 0h1m4 0h2m1 0h1m4 0h1m1 0h1m-23 1h3m2 0h1m1 0h2m1 0h2m3 0h2m2 0h3m2 0h3m-28 1h2m3 0h1m2 0h5m2 0h9m1 0h2m-20 1h2m1 0h2m1 0h1m1 0h3m1 0h1m3 0h2m1 0h2m-29 1h7m2 0h1m3 0h1m2 0h2m1 0h2m1 0h1m1 0h1m1 0h1m-27 1h1m5 0h1m1 0h1m3 0h1m1 0h1m3 0h1m1 0h1m3 0h1m-25 1h1m1 0h3m1 0h1m2 0h2m2 0h2m2 0h1m2 0h7m-27 1h1m1 0h3m1 0h1m1 0h3m3 0h1m2 0h1m1 0h1m4 0h1m1 0h2m-28 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1m3 0h1m1 0h1m2 0h1m1 0h1m2 0h1m-29 1h1m5 0h1m1 0h4m1 0h2m1 0h1m2 0h4m1 0h1m2 0h1m-28 1h7m2 0h2m1 0h2m1 0h1m3 0h3m1 0h1m1 0h1m1 0h1"/></svg></span>
+            <span class="qr-caption">PORTFOLIO</span>
+        </a>
     </header>
 
     <!-- ============================================================
@@ -500,11 +541,11 @@
                     <li>Raised drivability from <strong>6.4 (poor) to 7.8 (saleable)</strong> on AVL DRIVE — a <strong>22% gain</strong> — tuning tip-in/tip-out, torque management, and response timing</li>
                     <li>Set and validated <strong>diagnostic trouble codes (DTCs) and OBD monitors</strong> for the propulsion system</li>
                     <li>Ran calibration campaigns at a <strong>GM proving facility</strong>, the <strong>California Air Resources Board AVL chassis dyno</strong>, and Toronto Motorsports Park — on-road and closed-course</li>
+                    <li>Led and trained <strong>8 engineers</strong> integrating a 150-kW switched-reluctance powertrain into the rear of a Cadillac LYRIQ in <strong>8 months</strong></li>
                     <li>Owned the data-acquisition chain end to end: GL2400 and VN1630 recorders, CANalyzer, CANape, Vector GSuite, and Simulink Real-Time Explorer</li>
                     <li>Tore down and reassembled the LYRIQ driveline and rear subframe multiple times over the build, working from GM service procedures in <strong>ACDelco TDS</strong></li>
                     <li>Cut <strong>41 kg</strong> of unsprung and rotating mass via a lightweight wheel package, improving ride and steering response</li>
                     <li>Validated the rear subframe against <strong>GM's internal structural documentation</strong> by FEA (Altair HyperWorks, Simcenter) — met <strong>100%</strong> of required criteria</li>
-                    <li>Led and trained <strong>8 engineers</strong> integrating a 150-kW switched-reluctance powertrain into the rear of a Cadillac LYRIQ in <strong>8 months</strong></li>
                     <li><strong>2nd place overall</strong>, Year 4 DOE EcoCAR EV Challenge — 1 of only <strong>5 of 13</strong> teams to finish the over-the-road event with full points</li>
                 </ul>
                 <div class="tag-row">
