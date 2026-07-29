@@ -441,7 +441,9 @@
             /* Deliberately paced to fill two full pages — adjust font-size
                and the gaps below together if content is ever added/removed. */
             html { font-size: 10.5pt; }
-            body { padding: 14mm 16mm; background: #fff; }
+            /* Margins come from @page ONLY. Leaving the screen padding on
+               here double-counts it and pushes the document to 3 pages. */
+            body { padding: 0; background: #fff; }
             .print-bar { display: none !important; }
             .page { max-width: 100%; }
 
@@ -732,27 +734,6 @@
             <div class="skill-row">
                 <div class="skill-cat">Service &amp; Licensing</div>
                 <div class="skill-items">ACDelco TDS (GM service information), Vehicle Teardown &amp; Reassembly, Full Class G Driver's License (Ontario)</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         AWARDS
-         ============================================================ -->
-    <section>
-        <div class="sec-label">Awards &amp; Recognition</div>
-        <div class="award-list">
-            <div class="award-item">
-                <div><span class="award-name">Valedictorian</span> <span class="award-detail">— McMaster University, B.Tech Class of 2023</span></div>
-                <div class="award-year">2023</div>
-            </div>
-            <div class="award-item">
-                <div><span class="award-name">2nd Place Overall</span> <span class="award-detail">— DOE EcoCAR EV Challenge, Year 4</span></div>
-                <div class="award-year">2025</div>
-            </div>
-            <div class="award-item">
-                <div><span class="award-name">Primary Author</span> <span class="award-detail">— SAE World Congress Experience (WCX)</span></div>
-                <div class="award-year">2024</div>
             </div>
         </div>
     </section>
