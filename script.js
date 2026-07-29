@@ -24,13 +24,11 @@ const galleries = {
     },
     'simbuilder': {
         title: 'SimBuilder — Virtual Drivability Evaluation Pipeline',
+        // Ordered to follow the workflow: build the run → inspect it → compare it.
         images: [
-            // EDIT: drop screenshots into images/ and update these paths.
-            // Good candidates: the Vehicle Builder tab, the live run panel,
-            // the Results leaderboard, and a sim-vs-real overlay in the viewer.
-            { src: 'images/simbuilder-1.jpg', caption: 'Vehicle Builder — motor, gearing, mass and tire overrides' },
-            { src: 'images/simbuilder-2.jpg', caption: 'Live run panel with solver progress and log' },
-            { src: 'images/simbuilder-3.jpg', caption: 'Results leaderboard — Wh/km, jerk RMS, cycle tracking RMSE' },
+            { src: 'images/simbuilder-2.jpg', caption: 'Scenario Builder — a tip-in/tip-out maneuver assembled from phases, with UDDS, HWFET and imported real drives one click away. The Altair .adf is written live as you edit.' },
+            { src: 'images/simbuilder-3.jpg', caption: 'Built-in MF4 viewer — 24 channels from an HWFET run: chassis acceleration, pedal, battery SOC and vehicle speed across the full 765-second cycle.' },
+            { src: 'images/simbuilder-1.jpg', caption: 'Results leaderboard — every run scored on Wh/km, ΔSOC, jerk RMS, motor chatter and cycle-tracking RMSE. Bottom-left of the scatter wins: efficient and smooth.' },
         ]
     },
     'hybrid-study': {
